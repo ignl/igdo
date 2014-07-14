@@ -1,0 +1,25 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"	
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:link id="details" view="/pages/item/details.jspx" value="${messages['details.product']}" >
+        <f:param name="itemId" value="#{itemId}"/>
+    </h:link>
+	<h:link id="allComments" value="#{messages['details.comments']}" view="/pages/item/comments.jspx" >
+		<f:param name="itemId" value="#{itemId}"/>
+		<f:param name="page" value="1"/>
+	</h:link>
+
+	<script language="JavaScript">
+	    function setClass(id, className) {
+	        obj = document.getElementById(id);
+	        if (obj != null) {
+	            obj.className = className;
+	        }
+	    }
+	    setClass("#{tab}", "selected");
+	</script>
+
+</div>

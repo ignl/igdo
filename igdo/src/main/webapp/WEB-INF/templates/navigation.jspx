@@ -1,0 +1,47 @@
+<td xmlns="http://www.w3.org/1999/xhtml"
+	 xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:s="http://jboss.com/products/seam/taglib"
+	 xmlns:f="http://java.sun.com/jsf/core"
+	 xmlns:c="http://java.sun.com/jstl/core"
+	 xmlns:igdo="www.igdo.lt/igdo" 
+	 xmlns:h="http://java.sun.com/jsf/html" 
+	 id="left">
+	 
+	<!-- Product types navigation -->
+	<igdo:navigationBox header="#{messages['navigation.categories']}" >
+	
+		<ui:repeat value="#{shoppingBean.categories}" var="category">
+		    <s:link style='font-weight:bold' rendered="#{shoppingBean.selectedCategory == category}" value="#{category.name}" view="/pages/index.jspx">
+		    	<f:param name="categoryId" value="#{category.id}"/>
+		    </s:link>
+		    <s:link rendered="#{shoppingBean.selectedCategory != category}" value="#{category.name}" view="/pages/index.jspx">
+		    	<f:param name="categoryId" value="#{category.id}"/>
+		    </s:link>
+		</ui:repeat>
+	
+	</igdo:navigationBox>
+
+	<!-- Attributes -->
+	<ui:repeat value="#{shoppingBean.getItemAttributeNames()}" var="attributeName">
+		<igdo:navigationBox header="#{attributeName.name}" >
+			<ui:repeat value="#{shoppingBean.getItemAttributes(attributeName)}" var="attribute">
+				<s:link style='font-weight:bold' rendered="#{shoppingBean.selectedAttributeId == attribute.id}" value="#{attribute.attributeValue.value}" view="/pages/index.jspx">
+			    	<f:param name="attributeId" value="#{attribute.id}"/>
+			    </s:link>
+			    <s:link rendered="#{shoppingBean.selectedAttributeId != attribute.id}" value="#{attribute.attributeValue.value}" view="/pages/index.jspx">
+			    	<f:param name="attributeId" value="#{attribute.id}"/>
+			    </s:link>
+			</ui:repeat>
+		</igdo:navigationBox>
+	</ui:repeat>
+	
+	<!-- Top items navigation -->
+	<igdo:navigationBox header="#{messages['navigation.topItems']}" >
+		
+		<ui:repeat value="#{shoppingBean.topItems}" var="item">
+			<igdo:itemDetailLink itemId="#{item.id}" value="#{item.name}" />
+		</ui:repeat>
+	
+	</igdo:navigationBox>
+		
+</td>

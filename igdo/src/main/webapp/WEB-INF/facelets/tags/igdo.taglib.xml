@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC
+  "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+  "facelet-taglib_1_0.dtd">
+<facelet-taglib>
+    <namespace>www.igdo.lt/igdo</namespace>
+    
+	<tag>
+		<tag-name>border</tag-name>
+		<source>border.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>innerBorder</tag-name>
+		<source>innerBorder.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>valueMetter</tag-name>
+		<source>valueMetter.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>itemDetailLink</tag-name>
+		<source>itemDetailLink.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>navigationBox</tag-name>
+		<source>navigationBox.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>date</tag-name>
+		<source>date.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>searchBar</tag-name>
+		<source>searchBar.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>formHeader</tag-name>
+		<source>formHeader.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>requiredFieldImage</tag-name>
+		<source>requiredFieldImage.jspx</source>
+	</tag>
+	
+	<!-- Pager which just change url parameter -->
+	<tag>
+		<tag-name>pager</tag-name>
+		<source>pager.jspx</source>
+	</tag>
+	
+	<!-- Pager which change url parameter and submit -->
+	<tag>
+		<tag-name>commandPager</tag-name>
+		<source>commandPager.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>buttonDecorator</tag-name>
+		<source>buttonDecorator.jspx</source>
+	</tag>
+	
+	<tag>
+		<tag-name>tabs</tag-name>
+		<source>tabs.jspx</source>
+	</tag>
+	
+</facelet-taglib>
