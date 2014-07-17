@@ -155,7 +155,7 @@ public class CartItem extends BaseEntity {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((cart == null) ? 0 : cart.hashCode());
+        result = prime * result + ((cart == null) ? 0 : cart.getId().hashCode());
         result = prime * result + ((item == null) ? 0 : item.hashCode());
         return result;
     }
@@ -175,7 +175,7 @@ public class CartItem extends BaseEntity {
         if (cart == null) {
             if (other.cart != null)
                 return false;
-        } else if (!cart.equals(other.cart))
+        } else if (!cart.getId().equals(other.cart.getId()))
             return false;
         if (item == null) {
             if (other.item != null)

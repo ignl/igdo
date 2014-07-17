@@ -11,8 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lt.igdo.domain.base.BaseEntity;
@@ -47,7 +47,7 @@ public class Category extends BaseEntity {
      * Attribute template which is list of attribute names. So items of this
      * category should have those attributes set.
      */
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "ATTRIBUTE_TEMPLATES", joinColumns = { @JoinColumn(name = "CATEGORY_ID") }, inverseJoinColumns = @JoinColumn(name = "ATTRIBUTE_NAME_ID"))
     private List<AttributeName> attributeTemplate;
 

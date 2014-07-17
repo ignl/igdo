@@ -15,6 +15,7 @@ import lt.igdo.domain.Shop;
 import lt.igdo.ejb.services.interfaces.IShopService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Shop related services implementation.
@@ -51,6 +52,7 @@ public class ShopService implements IShopService {
      * @see lt.igdo.ejb.services.interfaces.IShopService#saveShop(lt.igdo.domain.Shop,
      *      lt.igdo.domain.Manager)
      */
+    @Transactional(readOnly = false)
     public void saveShop(Shop shop, Manager manager) {
         em.persist(shop.getShopInfo());
         em.persist(shop);

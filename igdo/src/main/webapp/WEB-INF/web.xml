@@ -5,6 +5,15 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
          
       <display-name>Igdo</display-name>
+      
+      <!-- Log4J configuration -->
+	    <context-param>  
+	         <param-name>log4jConfigLocation</param-name>
+			 <param-value>/WEB-INF/log4j.xml</param-value>  
+	    </context-param>  
+	    <listener>  
+		      <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>  
+	    </listener>
  		
       <!-- Spring Context Configuration' s Path definition -->
       <context-param>
@@ -30,23 +39,6 @@
         </listener-class>
       </listener>
       
-      <context-param>
-			<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-			<param-value>.jspx</param-value>
-		</context-param>
-      
-      <!-- Spring security -->
-      <filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-		</filter>
-		<filter-mapping>
-			<filter-name>springSecurityFilterChain</filter-name>
-			<url-pattern>/*</url-pattern>
-			<dispatcher>FORWARD</dispatcher>
-			<dispatcher>REQUEST</dispatcher>
-		</filter-mapping>
- 
       <!-- Project Stage Level -->
       <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -63,39 +55,44 @@
       <!-- Mapping with servlet and url for the http requests. -->
       <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>*.m</url-pattern>
       </servlet-mapping>
       
        <!-- Welcome Page -->
       <welcome-file-list>
-        <welcome-file>/index.jsf</welcome-file>
+        <welcome-file>/index.m</welcome-file>
       </welcome-file-list>
-      
-      <!-- Spring MVC servlet for REST requests -->
-      <servlet>
-        <servlet-name>springREST</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>springREST</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-
-      <!-- Primefaces config -->
-      <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>start</param-value>
-      </context-param>
       
       <!-- Facelets taglib -->
 		<context-param>
-			<param-name>facelets.LIBRARIES</param-name>
+			<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
 			<param-value>
 				/WEB-INF/facelets/tags/igdo.taglib.xml
 			</param-value>
 		</context-param>
+	
+	<!-- Images servlets. Should be in separate module as then other servers could provide images and its more scalable. For simplicity its here now. -->
+	<servlet>
+        <servlet-name>Images Servlet</servlet-name>
+        <servlet-class>lt.igdo.servlets.images.ImageServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Images Servlet</servlet-name>
+        <url-pattern>/image</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Image Upload Servlet</servlet-name>
+        <servlet-class>lt.igdo.servlets.images.UploadServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Image Upload Servlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
 	
 	     
 	  <!-- Bean validation -->

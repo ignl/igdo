@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>igdo</groupId>
-	<artifactId>igdo-parent-pom</artifactId>
-	<packaging>pom</packaging>
+	<groupId>lt.igdo</groupId>
+	<artifactId>igdo</artifactId>
+	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<description>IGDO Project</description>
 	<name>IGDO POM</name>
@@ -48,7 +48,7 @@
 	<properties>
 		<spring.version>4.0.5.RELEASE</spring.version>
 		<spring.security.version>3.2.4.RELEASE</spring.security.version>
-		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.version>3.6.10.Final</hibernate.version>
 		<jsf.version>2.2.7</jsf.version>
 		<querydsl.version>3.3.4</querydsl.version>
 		<env>dev</env>
@@ -77,12 +77,6 @@
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
@@ -97,30 +91,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>1.6.0.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-core</artifactId>
-			<version>${spring.security.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${spring.security.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${spring.security.version}</version>
 		</dependency>
 
 		<dependency>
@@ -159,9 +129,9 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.1.1.Final</version>
+			<version>3.1.0.GA</version>
 		</dependency>
-		
+
 		<!-- c3p0 dependency -->
 		<dependency>
 			<groupId>com.mchange</groupId>
@@ -202,7 +172,6 @@
 			<version>2.2</version>
 		</dependency>
 
-
 		<!-- Primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -211,6 +180,11 @@
 		</dependency>
 
 		<!-- Misc libraries -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.7</version>
+		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -231,7 +205,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.3.4</version>
 		</dependency>
-		
+
 		<!-- Testing dependencies -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -240,7 +214,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<filters>
 			<filter>src/main/filters/filter-${env}.properties</filter>
@@ -467,6 +441,6 @@
 		</plugins>
 
 	</build>
-	
-	
+
+
 </project>

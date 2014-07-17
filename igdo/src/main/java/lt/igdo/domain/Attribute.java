@@ -32,12 +32,12 @@ public class Attribute extends BaseEntity {
     private static final long serialVersionUID = 2167244060649192257L;
 
     /** */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ATTRIBUTE_NAME_ID", nullable = false)
     private AttributeName attributeName;
 
     /** */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ATTRIBUTE_VALUE_ID", nullable = false)
     private AttributeValue attributeValue;
 

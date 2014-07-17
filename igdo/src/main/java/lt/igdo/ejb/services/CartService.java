@@ -19,6 +19,7 @@ import lt.igdo.domain.User;
 import lt.igdo.ejb.services.interfaces.CartServiceRemote;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Cart related services implementation.
@@ -33,7 +34,7 @@ public class CartService implements CartServiceRemote {
     private static final String FIND_CURRENT_CART_BY_USER_QUERY = "Cart.findByUser";
 
     /** Select cart items query constant. */
-    private static final String SELECT_CARTITEMS_QUERY = "select ci from CartItem ci where ci.cart.id = :cartId";
+    private static final String SELECT_CARTITEMS_QUERY = "select ci from CartItem ci join fetch ci.item join fetch ci.cart where ci.cart.id = :cartId";
 
     /** Remove cart item query constant. */
     private static final String REMOVE_SINGLE_CARTITEM_QUERY = "delete from CartItem ci where ci.id = :cartItemId";
@@ -45,6 +46,7 @@ public class CartService implements CartServiceRemote {
 	@PersistenceContext
     private EntityManager em;
 
+	@Transactional(readOnly = false)
     public Cart createCartByUser(User user) {
         Cart cart = new Cart();
         cart.setUser(user);
@@ -55,6 +57,7 @@ public class CartService implements CartServiceRemote {
     /**
      * @see lt.igdo.ejb.services.interfaces.CartServiceRemote#removeCart(lt.igdo.domain.Cart)
      */
+    @Transactional(readOnly = false)
     public void removeCart(Cart cart) {
         em.remove(cart);
     }
@@ -92,9 +95,11 @@ public class CartService implements CartServiceRemote {
      * @see lt.igdo.ejb.services.interfaces.CartServiceRemote#addCartItem(lt.igdo.domain.Cart,
      *      lt.igdo.domain.Item)
      */
+    @Transactional(readOnly = false)
     public void addCartItem(Cart cart, Item item) {
-        em.merge(cart);
-        em.merge(item);
+        if (cart.isTransient()) {
+        	em.persist(cart);
+        }
         CartItem cartItem = new CartItem(item, cart);
         em.persist(cartItem);
     }
@@ -102,6 +107,7 @@ public class CartService implements CartServiceRemote {
     /**
      * @see lt.igdo.ejb.services.interfaces.CartServiceRemote#removeCartItem(lt.igdo.domain.CartItem)
      */
+    @Transactional(readOnly = false)
     public void removeCartItem(CartItem cartItem) {
         Query query = em
                 .createQuery(CartService.REMOVE_SINGLE_CARTITEM_QUERY);
@@ -122,6 +128,7 @@ public class CartService implements CartServiceRemote {
     /**
      * @see lt.igdo.ejb.services.interfaces.CartServiceRemote#removeAllCartItems(lt.igdo.domain.Cart)
      */
+    @Transactional(readOnly = false)
     public void removeAllCartItems(Cart cart) {
         Query query = em.createQuery(CartService.REMOVE_CARTITEMS_QUERY);
         query.setParameter("cartId", cart.getId());

@@ -13,6 +13,7 @@ import lt.igdo.domain.Manager;
 import lt.igdo.ejb.services.interfaces.IManagerService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Manager related services implementation.
@@ -31,6 +32,7 @@ public class ManagerService implements IManagerService {
      * @see lt.igdo.ejb.services.interfaces.IManagerService#authenticateManager(java.lang.String,
      *      java.lang.String)
      */
+	@Transactional(readOnly = false)
     public boolean authenticateManager(String managerLogin, String password) {
 
         Query query = em.createNamedQuery("Manager.findByLogin");

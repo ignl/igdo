@@ -7,7 +7,6 @@ package lt.igdo.webapp.shop.actions;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -80,9 +79,9 @@ public class CommentAction {
 	/**
      * Is invoked on creation of this component.
      */
-    @PostConstruct
-    public void create() {
+    public void init() {
         item = itemService.getItemById(itemId);
+        System.out.println("AAAAAAAAAAA " + item.getId());
         comment = new Comment();
     }
 

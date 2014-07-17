@@ -10,15 +10,19 @@ import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
+import lt.igdo.domain.Attribute;
+import lt.igdo.domain.Category;
 import lt.igdo.domain.Item;
+import lt.igdo.domain.Shop;
 import lt.igdo.ejb.services.interfaces.ISearchService;
 
+import org.compass.annotations.config.CompassAnnotationsConfiguration;
 import org.compass.core.Compass;
 import org.compass.core.CompassHit;
+import org.compass.core.config.CompassConfiguration;
 import org.compass.core.support.search.CompassSearchCommand;
 import org.compass.core.support.search.CompassSearchHelper;
 import org.compass.core.support.search.CompassSearchResults;
-import org.compass.gps.device.jpa.embedded.toplink.TopLinkHelper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -39,8 +43,14 @@ public class SearchService implements ISearchService {
      *      int, int)
      */
     public List<Item> search(String pattern, int page, int resultsPerPage) {
-
-        Compass compass = TopLinkHelper.getCompass(emf);
+    	// quickfix after migration to not to reconfigure compass
+    	CompassConfiguration conf = new CompassAnnotationsConfiguration();
+    	conf.setConnection("C:\\temp");
+    	conf.addClass(Item.class);
+    	conf.addClass(Category.class);
+    	conf.addClass(Shop.class);
+    	conf.addClass(Attribute.class);
+        Compass compass = conf.buildCompass();
 
         CompassSearchHelper searchHelper = new CompassSearchHelper(compass,
                 resultsPerPage);
@@ -59,7 +69,14 @@ public class SearchService implements ISearchService {
      * @see lt.igdo.ejb.services.interfaces.ISearchService#totalResults(java.lang.String)
      */
     public int totalResults(String pattern) {
-        Compass compass = TopLinkHelper.getCompass(emf);
+    	// quickfix after migration to not to reconfigure compass
+        CompassConfiguration conf = new CompassAnnotationsConfiguration();
+    	conf.setConnection("C:\\temp");
+    	conf.addClass(Item.class);
+    	conf.addClass(Category.class);
+    	conf.addClass(Shop.class);
+    	conf.addClass(Attribute.class);
+        Compass compass = conf.buildCompass();
 
         CompassSearchHelper searchHelper = new CompassSearchHelper(compass);
         CompassSearchResults results = searchHelper

@@ -105,7 +105,7 @@ public class OrderAction {
 
     public String showOrder(Order order) {
         this.orderToShow = order;
-        return "/pages/user/preferences/orderView.jspx";
+        return "/pages/user/preferences/orderView.xhtml";
     }
 
     /**

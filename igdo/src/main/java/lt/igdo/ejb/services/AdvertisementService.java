@@ -21,15 +21,15 @@ import org.springframework.stereotype.Service;
  * @author Donatas
  * 
  */
-@Service("advertisement")
+@Service("advertismentService")
 public class AdvertisementService implements IAdvertisementService {
 
     /** Entity manager. */
 	@PersistenceContext
     private EntityManager em;
 
-    /* (non-Javadoc)
-     * @see lt.igdo.ejb.services.interfaces.IAdvertismentService#getAdvertisments(lt.igdo.domain.Category)
+    /**
+     * @see lt.igdo.ejb.services.interfaces.IAdvertisementService#getAdvertisments(lt.igdo.domain.Category)
      */
     @SuppressWarnings("unchecked")
     public List<Advertisment> getAdvertisments(Category selectedCategory) {

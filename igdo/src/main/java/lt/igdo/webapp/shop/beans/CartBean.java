@@ -123,7 +123,7 @@ public class CartBean {
      * @return Ceckout view.
      */
     public String checkout() {
-        return "/pages/cart/checkout.jspx";
+        return "/pages/cart/checkout.xhtml";
     }
 
 }

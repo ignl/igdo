@@ -17,6 +17,7 @@ import lt.igdo.domain.Item;
 import lt.igdo.ejb.services.interfaces.IItemService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Item related services implementation.
@@ -49,7 +50,6 @@ public class ItemService implements IItemService {
     @SuppressWarnings("unchecked")
     public List<Attribute> getAttributes(Category selectedCategory) {
         if (selectedCategory != null) {
-            em.merge(selectedCategory);
             Query attributesQuery = em
                     .createQuery("select a from Attribute a, Category c "
                             + "join c.attributeTemplate at "
@@ -123,6 +123,7 @@ public class ItemService implements IItemService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IItemService#saveItem(lt.igdo.domain.Item)
      */
+    @Transactional(readOnly = false)
     public Item saveItem(Item item) {
         em.persist(item);
         return item;

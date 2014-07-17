@@ -19,6 +19,7 @@ import lt.igdo.ejb.services.interfaces.IOrderService;
 import lt.igdo.exceptions.NoItemsForOrderException;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Order related services implementation.
@@ -60,6 +61,7 @@ public class OrderService implements IOrderService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IOrderService#placeAnOrder(java.util.List, lt.igdo.domain.User)
      */
+    @Transactional(readOnly = false)
     public Order placeAnOrder(List<CartItem> cartItems, User user) {
         if (cartItems == null || cartItems.size() == 0) {
             throw new NoItemsForOrderException();

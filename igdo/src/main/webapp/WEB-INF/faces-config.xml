@@ -27,13 +27,13 @@
 		<from-view-id>/*</from-view-id>
 		<navigation-case>
 			<from-outcome>index</from-outcome>
-			<to-view-id>/index.jspx</to-view-id>
+			<to-view-id>/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
 			<from-outcome>cart</from-outcome>
-			<to-view-id>/cart.jspx</to-view-id>
+			<to-view-id>/cart.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		

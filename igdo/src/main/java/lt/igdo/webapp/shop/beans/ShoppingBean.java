@@ -43,8 +43,8 @@ public class ShoppingBean {
     private IAdvertisementService advertismentService;
 
     /** Component were all system item types are cached. */
-    @ManagedProperty(value="#{lt.igdo.application.CategoryCache}")
-    private CategoryCache categoriesCache;
+	@ManagedProperty(value="#{categoryCache}")
+    private CategoryCache categoryCache;
 
     /** Loaded attributes. */
     private Map<AttributeName, List<Attribute>> loadedAttributes;
@@ -64,8 +64,8 @@ public class ShoppingBean {
 		this.advertismentService = advertismentService;
 	}
 
-	public void setCategoriesCache(CategoryCache categoriesCache) {
-		this.categoriesCache = categoriesCache;
+	public void setCategoryCache(CategoryCache categoryCache) {
+		this.categoryCache = categoryCache;
 	}
 
 	/**
@@ -128,9 +128,9 @@ public class ShoppingBean {
      * @return List of categories.
      */
     public List<Category> getCategories() {
-        List<Category> subCategories = categoriesCache
+        List<Category> subCategories = categoryCache
                 .getCategoriesByParent(getSelectedCategory());
-        return subCategories != null ? subCategories : categoriesCache
+        return subCategories != null ? subCategories : categoryCache
                 .getCategoriesByParent(getSelectedCategory()
                         .getParentCategory());
     }
@@ -141,7 +141,7 @@ public class ShoppingBean {
      * @return List of categories.
      */
     public List<Category> getCategoriesForSearch() {
-        List<Category> searchCategories = categoriesCache
+        List<Category> searchCategories = categoryCache
                 .getCategoriesByParent(getSelectedCategory());
         return searchCategories != null ? searchCategories : Arrays.asList(getSelectedCategory());
     }
@@ -170,7 +170,7 @@ public class ShoppingBean {
      * @return Selected category.
      */
     public Category getSelectedCategory() {
-        return categoriesCache.getCategoryById(categoryId);
+        return categoryCache.getCategoryById(categoryId);
     }
 
     /**

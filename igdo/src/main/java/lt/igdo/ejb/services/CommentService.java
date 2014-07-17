@@ -15,6 +15,7 @@ import lt.igdo.domain.Item;
 import lt.igdo.ejb.services.interfaces.ICommentService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Comment related services implementation.
@@ -63,6 +64,7 @@ public class CommentService implements ICommentService {
     /**
      * @see lt.igdo.ejb.services.interfaces.ICommentService#saveComment(lt.igdo.domain.Comment)
      */
+    @Transactional(readOnly = false)
     public void saveComment(Comment comment) {
         em.persist(comment);
     }

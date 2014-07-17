@@ -20,6 +20,7 @@ import lt.igdo.domain.UserConfirmation;
 import lt.igdo.ejb.services.interfaces.IUserService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User related services implementation.
@@ -68,6 +69,7 @@ public class UserService implements IUserService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IUserService#saveUser(lt.igdo.domain.User)
      */
+    @Transactional(readOnly = false)
     public User saveUser(User user) {
         em.persist(user);
         return user;
@@ -76,6 +78,7 @@ public class UserService implements IUserService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IUserService#updateUser(lt.igdo.domain.User)
      */
+    @Transactional(readOnly = false)
     public User updateUser(User user) {
         return em.merge(user);
     }
@@ -83,6 +86,7 @@ public class UserService implements IUserService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IUserService#saveUserConfirmation(lt.igdo.domain.UserConfirmation)
      */
+    @Transactional(readOnly = false)
     public void saveUserConfirmation(UserConfirmation confirmation) {
         em.persist(confirmation);
     }
@@ -100,6 +104,7 @@ public class UserService implements IUserService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IUserService#saveUserAddress(lt.igdo.domain.User, lt.igdo.domain.Address)
      */
+    @Transactional(readOnly = false)
     public void saveUserAddress(User user, Address address) {
         em.persist(address);
         em.flush();

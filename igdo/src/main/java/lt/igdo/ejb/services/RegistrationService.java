@@ -16,6 +16,7 @@ import lt.igdo.domain.UserConfirmation;
 import lt.igdo.ejb.services.interfaces.IRegistrationService;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Registration related services implementation.
@@ -33,6 +34,7 @@ public class RegistrationService implements IRegistrationService {
     /**
      * @see lt.igdo.ejb.services.interfaces.IRegistrationService#confirm(java.lang.String)
      */
+	@Transactional(readOnly = false)
     public void confirm(String code) throws RemoteException {
         Query query = em.createNamedQuery("UserConfirmation.findByCode");
         query.setParameter("code", code);

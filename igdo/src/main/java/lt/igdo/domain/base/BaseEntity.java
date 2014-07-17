@@ -32,14 +32,6 @@ public class BaseEntity implements IEntity, Serializable {
     private Long id;
 
     /**
-     * Version field for optimistic locking. If on update version is different
-     * than it was on load that means someone already modified that entity and
-     * Concurent modification exception is thrown.
-     */
-    @Version
-    private Long version;
-
-    /**
      * @see lt.igdo.domain.base.IEntity#getId()
      */
     @Override
@@ -52,20 +44,6 @@ public class BaseEntity implements IEntity, Serializable {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * Version getter.
-     */
-    public Long getVersion() {
-        return version;
-    }
-
-    /**
-     * Version setter.
-     */
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     @Override

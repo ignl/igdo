@@ -66,7 +66,7 @@ public class AddressAction {
         userService.saveUserAddress(userBean.getUser(), address);
         userBean.reloadUser();
         address = new Address();
-        return "/pages/user/preferences/addresses.jspx";
+        return "/pages/user/preferences/addresses.xhtml";
     }
 
     /**

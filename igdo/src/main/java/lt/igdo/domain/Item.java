@@ -12,8 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lt.igdo.domain.base.BaseEntity;
@@ -71,7 +71,7 @@ public class Item extends BaseEntity {
     private String shortDescription;
 
     /** Short description of the item. */
-    @Column(name = "FULL_DESCRIPTION", nullable = false)
+    @Column(name = "FULL_DESCRIPTION", nullable = false, length = 10000)
     @SearchableProperty
     private String fullDescription;
 
@@ -89,13 +89,13 @@ public class Item extends BaseEntity {
     private Boolean activated;
 
     /** Categories this item belongs to. */
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "ITEM_CATEGORIES", joinColumns = { @JoinColumn(name = "ITEM_ID") }, inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
     @SearchableReference
     private Set<Category> categories;
 
     /** Attributes this item has. */
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "ITEM_ATTRIBUTES", joinColumns = { @JoinColumn(name = "ITEM_ID") }, inverseJoinColumns = @JoinColumn(name = "ATTRIBUTE_ID"))
     @SearchableReference
     private Set<Attribute> attributes;

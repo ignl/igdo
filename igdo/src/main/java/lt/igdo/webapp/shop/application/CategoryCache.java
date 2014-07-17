@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 import lt.igdo.commons.exceptions.fatal.UnrecoverableApplicationException;
 import lt.igdo.domain.Category;
@@ -25,8 +25,8 @@ import lt.igdo.ejb.services.interfaces.ICategoryService;
  * @author Ignas
  * 
  */
-@ManagedBean(name = "lt.igdo.application.CategoryCache", eager = true)
-@ApplicationScoped
+@ManagedBean(name = "categoryCache")
+@ViewScoped
 public class CategoryCache {
 
     /** Category service remote ejb. */
@@ -43,8 +43,8 @@ public class CategoryCache {
     private List<Category> allCategories;
 
     
-    public ICategoryService getCategoryService() {
-		return categoryService;
+	public void setCategoryService(ICategoryService categoryService) {
+		this.categoryService = categoryService;
 	}
 
 	/**
@@ -55,7 +55,6 @@ public class CategoryCache {
      * @return Children categories of parent.
      */
     public List<Category> getCategoriesByParent(Category parent) {
-        // cia tik developinant del patogumo, kad nereiktu perkraut programos
         if (allCategories == null || sortedCategories == null) {
             buildCategories();
         }
@@ -70,7 +69,6 @@ public class CategoryCache {
      * @return Category.
      */
     public Category getCategoryById(Long id) {
-        // cia tik developinant del patogumo, kad nereiktu perkraut programos
         if (allCategories == null || sortedCategories == null) {
             buildCategories();
         }
