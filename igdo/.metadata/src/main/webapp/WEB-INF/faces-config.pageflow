@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14052616356090" configfile="/igdo/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14053703513186" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14053703513187 pf14053703513188" path="/*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index" id="pf14053703513189" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14053703513187" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cart" id="pf140537035131810" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14053703513188" path="/cart.xhtml"/>
+  <links id="pf14053703513187" target="pf14053703513189" source="pf14053703513186" outcome="index" redirect="true"/>
+  <links id="pf14053703513188" target="pf140537035131810" source="pf14053703513186" outcome="cart" redirect="true"/>
+</pageflow:Pageflow>
